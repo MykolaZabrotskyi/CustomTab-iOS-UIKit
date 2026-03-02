@@ -9,7 +9,7 @@ import UIKit
 
 class CustomTabCollectionViewCell: UICollectionViewCell {
     
-    // MARK: - UIComponents
+    // MARK: - UI Components
     
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -17,7 +17,6 @@ class CustomTabCollectionViewCell: UICollectionViewCell {
         label.font = Constant.Label.font
         label.textColor = Constant.Label.Color.notSelected
         label.textAlignment = .center
-        
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -25,7 +24,11 @@ class CustomTabCollectionViewCell: UICollectionViewCell {
     
     override var isSelected: Bool {
         didSet {
-            UIView.transition(with: titleLabel, duration: 0.2, options: .transitionCrossDissolve) {
+            UIView.transition(
+                with: titleLabel,
+                duration: Constant.Label.Transition.duration,
+                options: Constant.Label.Transition.options
+            ) {
                 self.titleLabel.textColor = self.isSelected
                 ? Constant.Label.Color.whenSelected
                 : Constant.Label.Color.notSelected
@@ -74,40 +77,17 @@ private extension CustomTabCollectionViewCell {
 private extension CustomTabCollectionViewCell {
     enum Constant {
         enum Label {
-            static let font: UIFont = .systemFont(ofSize: 25, weight: .semibold)
+            static let font = UIFont.systemFont(ofSize: 25, weight: .semibold)
             
             enum Color {
-                static let whenSelected: UIColor = .systemIndigo
-                static let notSelected: UIColor = .systemGray
+                static let whenSelected = UIColor.systemIndigo
+                static let notSelected = UIColor.systemGray
+            }
+            
+            enum Transition {
+                static let duration = 0.2
+                static let options = UIView.AnimationOptions.transitionCrossDissolve
             }
         }
     }
-}
-
-#Preview("Unselected State") {
-    let cell = CustomTabCollectionViewCell(frame: CGRect(
-        x: 0,
-        y: 0,
-        width: 120,
-        height: 44
-    ))
-    
-    cell.configure(with: "Home")
-    
-    return cell
-}
-
-#Preview("Selected State") {
-    let cell = CustomTabCollectionViewCell(frame: CGRect(
-        x: 0,
-        y: 0,
-        width: 120,
-        height: 44
-    ))
-    
-    cell.configure(with: "Home")
-    
-    cell.isSelected = true
-    
-    return cell
 }

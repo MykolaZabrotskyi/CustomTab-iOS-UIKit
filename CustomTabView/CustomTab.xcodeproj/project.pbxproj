@@ -7,26 +7,26 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		3752207E2F55AAD800C82256 /* CustomTabView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CustomTabView.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3752207E2F55AAD800C82256 /* CustomTab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CustomTab.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		375220902F55AAD900C82256 /* Exceptions for "CustomTabView" folder in "CustomTabView" target */ = {
+		375220902F55AAD900C82256 /* Exceptions for "CustomTab" folder in "CustomTab" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Resources/Info.plist,
 			);
-			target = 3752207D2F55AAD800C82256 /* CustomTabView */;
+			target = 3752207D2F55AAD800C82256 /* CustomTab */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		375220802F55AAD800C82256 /* CustomTabView */ = {
+		375220802F55AAD800C82256 /* CustomTab */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				375220902F55AAD900C82256 /* Exceptions for "CustomTabView" folder in "CustomTabView" target */,
+				375220902F55AAD900C82256 /* Exceptions for "CustomTab" folder in "CustomTab" target */,
 			);
-			path = CustomTabView;
+			path = CustomTab;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -45,7 +45,7 @@
 		375220752F55AAD800C82256 = {
 			isa = PBXGroup;
 			children = (
-				375220802F55AAD800C82256 /* CustomTabView */,
+				375220802F55AAD800C82256 /* CustomTab */,
 				3752207F2F55AAD800C82256 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -53,7 +53,7 @@
 		3752207F2F55AAD800C82256 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3752207E2F55AAD800C82256 /* CustomTabView.app */,
+				3752207E2F55AAD800C82256 /* CustomTab.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -61,9 +61,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3752207D2F55AAD800C82256 /* CustomTabView */ = {
+		3752207D2F55AAD800C82256 /* CustomTab */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 375220912F55AAD900C82256 /* Build configuration list for PBXNativeTarget "CustomTabView" */;
+			buildConfigurationList = 375220912F55AAD900C82256 /* Build configuration list for PBXNativeTarget "CustomTab" */;
 			buildPhases = (
 				3752207A2F55AAD800C82256 /* Sources */,
 				3752207B2F55AAD800C82256 /* Frameworks */,
@@ -74,13 +74,13 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				375220802F55AAD800C82256 /* CustomTabView */,
+				375220802F55AAD800C82256 /* CustomTab */,
 			);
-			name = CustomTabView;
+			name = CustomTab;
 			packageProductDependencies = (
 			);
 			productName = CustomTabView;
-			productReference = 3752207E2F55AAD800C82256 /* CustomTabView.app */;
+			productReference = 3752207E2F55AAD800C82256 /* CustomTab.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -98,7 +98,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 375220792F55AAD800C82256 /* Build configuration list for PBXProject "CustomTabView" */;
+			buildConfigurationList = 375220792F55AAD800C82256 /* Build configuration list for PBXProject "CustomTab" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -112,7 +112,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3752207D2F55AAD800C82256 /* CustomTabView */,
+				3752207D2F55AAD800C82256 /* CustomTab */,
 			);
 		};
 /* End PBXProject section */
@@ -324,7 +324,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		375220792F55AAD800C82256 /* Build configuration list for PBXProject "CustomTabView" */ = {
+		375220792F55AAD800C82256 /* Build configuration list for PBXProject "CustomTab" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				375220942F55AAD900C82256 /* Debug */,
@@ -333,7 +333,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		375220912F55AAD900C82256 /* Build configuration list for PBXNativeTarget "CustomTabView" */ = {
+		375220912F55AAD900C82256 /* Build configuration list for PBXNativeTarget "CustomTab" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				375220922F55AAD900C82256 /* Debug */,

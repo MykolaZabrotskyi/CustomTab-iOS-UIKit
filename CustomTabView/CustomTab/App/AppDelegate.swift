@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  CustomTabView
+//  CustomTab
 //
 //  Created by Mykola Zabrotskyi on 02.03.2026.
 //

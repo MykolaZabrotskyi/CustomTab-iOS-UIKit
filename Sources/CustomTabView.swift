@@ -59,7 +59,6 @@ public final class CustomTabView: UIView {
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        setupLayout()
     }
     
     public required init?(coder: NSCoder) {
@@ -73,6 +72,8 @@ public final class CustomTabView: UIView {
         self.tabTitles = tabTitles
         self.mainColor = mainColor
         self.secondColor = secondColor
+        
+        setupLayout()
     }
     
     // MARK: - Lifecycle

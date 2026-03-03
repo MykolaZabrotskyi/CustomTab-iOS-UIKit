@@ -11,13 +11,15 @@ protocol CustomTabViewDelegate: AnyObject {
     func customTabView(_ view: CustomTabView, didSelectTabAt index: Int)
 }
 
-class CustomTabView: UIView {
+final class CustomTabView: UIView {
     
     // MARK: - Properties
     
     weak var delegate: CustomTabViewDelegate?
     
-    var tabTitles: [String] = []
+    private var tabTitles: [String] = []
+    private var mainColor: UIColor = .systemBlue
+    private var secondColor: UIColor = .systemGray
     
     private var selectedIndex: Int = 0
     
@@ -44,10 +46,10 @@ class CustomTabView: UIView {
         return collectionView
     }()
     
-    private let indicatorView: UIView = {
+    private lazy var indicatorView: UIView = {
         let view = UIView()
         
-        view.backgroundColor = Constant.Indicator.color
+        view.backgroundColor = mainColor
         view.layer.cornerRadius = Constant.Indicator.cornerRadius
         
         return view
@@ -55,10 +57,16 @@ class CustomTabView: UIView {
     
     // MARK: - Init
     
-    init(frame: CGRect, tabTitles: [String]) {
+    init(frame: CGRect, tabTitles: [String], mainColor: UIColor, secondColor: UIColor) {
         super.init(frame: frame)
         self.tabTitles = tabTitles
+        self.mainColor = mainColor
+        self.secondColor = secondColor
         setupLayout()
+    }
+    
+    convenience init(tabTitles: [String], mainColor: UIColor, secondColor: UIColor) {
+        self.init(frame: .zero, tabTitles: tabTitles, mainColor: mainColor, secondColor: secondColor)
     }
     
     override init(frame: CGRect) {
@@ -151,7 +159,7 @@ extension CustomTabView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: CustomTabCollectionViewCell = collectionView.dequeue(for: indexPath)
-        cell.configure(with: tabTitles[indexPath.item])
+        cell.configure(with: tabTitles[indexPath.item], mainColor: self.mainColor, secondColor: self.secondColor)
         
         if indexPath.item == selectedIndex {
             collectionView.selectItem(at: indexPath, animated: false, scrollPosition: [])
@@ -213,7 +221,6 @@ private extension CustomTabView {
             static let widthDivider = 2.0
             static let emptySpaceDivider = 2.0
             static let cornerRadius: CGFloat = 2.0
-            static let color = UIColor.systemIndigo
             
             enum Animation {
                 static let duration = 0.3

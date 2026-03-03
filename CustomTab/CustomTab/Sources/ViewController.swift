@@ -7,14 +7,15 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
     
     // MARK: - Properties
     
-    private let firstTabView: CustomTabView = {
+    private let customTabView: CustomTabView = {
         let tabView = CustomTabView(
-            frame: .zero,
-            tabTitles: Constant.longArrayWithTabTitles
+            tabTitles: Constant.CustomTabView.tabTitles,
+            mainColor: Constant.CustomTabView.Color.main,
+            secondColor: Constant.CustomTabView.Color.second
         )
         
         tabView.translatesAutoresizingMaskIntoConstraints = false
@@ -22,27 +23,7 @@ class ViewController: UIViewController {
         return tabView
     }()
     
-    private let secondTabView: CustomTabView = {
-        let tabView = CustomTabView(
-            frame: .zero,
-            tabTitles: Constant.shortArrayWithTabTitles
-        )
-        
-        tabView.translatesAutoresizingMaskIntoConstraints = false
-        
-        return tabView
-    }()
-    
-    private let divider: UIView = {
-        let divider = UIView()
-        
-        divider.backgroundColor = .separator
-        divider.translatesAutoresizingMaskIntoConstraints = false
-        
-        return divider
-    }()
-    
-    // MARK: - Lyfecycle
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,9 +31,6 @@ class ViewController: UIViewController {
         view.backgroundColor = .systemBackground
         
         setupLayout()
-        
-        firstTabView.delegate = self
-        secondTabView.delegate = self
     }
 }
 
@@ -60,25 +38,18 @@ class ViewController: UIViewController {
 
 private extension ViewController {
     func setupLayout() {
-        view.addSubview(secondTabView)
-        view.addSubview(firstTabView)
-        view.addSubview(divider)
+        view.addSubview(customTabView)
+        
+        customTabView.delegate = self
         
         NSLayoutConstraint.activate([
-            firstTabView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
-            firstTabView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            firstTabView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            firstTabView.heightAnchor.constraint(equalToConstant: 50),
-            
-            divider.topAnchor.constraint(equalTo: firstTabView.bottomAnchor, constant: 25),
-            divider.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            divider.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            divider.heightAnchor.constraint(equalToConstant: 3),
-            
-            secondTabView.topAnchor.constraint(equalTo: divider.bottomAnchor, constant: 22),
-            secondTabView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            secondTabView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            secondTabView.heightAnchor.constraint(equalToConstant: 50)
+            customTabView.topAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.topAnchor,
+                constant: Constant.Layout.Padding.top
+            ),
+            customTabView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            customTabView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            customTabView.heightAnchor.constraint(equalToConstant: Constant.CustomTabView.height)
         ])
     }
 }
@@ -87,24 +58,38 @@ private extension ViewController {
 
 extension ViewController: CustomTabViewDelegate {
     func customTabView(_ view: CustomTabView, didSelectTabAt index: Int) {
-        print("Selected index: " + String(index))
+        debugPrint("Selected index: " + String(index))
     }
 }
 
-// MARK: - Constatns
+// MARK: - Constants
 
 private extension ViewController {
     enum Constant {
-        static let longArrayWithTabTitles = [
-            "Home",
-            "Messages",
-            "Profile",
-            "Settings",
-            "Notifications",
-            "Privacy",
-            "Help"
-        ]
-        static let shortArrayWithTabTitles = ["Home", "Search", "Profile"]
+        enum CustomTabView {
+            static let height: CGFloat = 50.0
+            
+            static let tabTitles = [
+                "Home",
+                "Messages",
+                "Profile",
+                "Settings",
+                "Notifications",
+                "Privacy",
+                "Help"
+            ]
+            
+            enum Color {
+                static let main = UIColor.systemYellow
+                static let second = UIColor.systemBlue
+            }
+        }
+        
+        enum Layout {
+            enum Padding {
+                static let top: CGFloat = 50.0
+            }
+        }
     }
 }
 

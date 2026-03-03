@@ -7,15 +7,20 @@
 
 import UIKit
 
-class CustomTabCollectionViewCell: UICollectionViewCell {
+final class CustomTabCollectionViewCell: UICollectionViewCell {
+    
+    // MARK: - Properties
+    
+    private var mainColor: UIColor = .systemBlue
+    private var secondColor: UIColor = .systemGray
     
     // MARK: - UI Components
     
-    private let titleLabel: UILabel = {
+    private lazy var titleLabel: UILabel = {
         let label = UILabel()
         
         label.font = Constant.Label.font
-        label.textColor = Constant.Label.Color.notSelected
+        label.textColor = self.secondColor
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         
@@ -30,8 +35,8 @@ class CustomTabCollectionViewCell: UICollectionViewCell {
                 options: Constant.Label.Transition.options
             ) {
                 self.titleLabel.textColor = self.isSelected
-                ? Constant.Label.Color.whenSelected
-                : Constant.Label.Color.notSelected
+                ? self.mainColor
+                : self.secondColor
             }
         }
     }
@@ -49,8 +54,12 @@ class CustomTabCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Configuration
     
-    func configure(with title: String) {
+    func configure(with title: String, mainColor: UIColor, secondColor: UIColor) {
         titleLabel.text = title
+        self.mainColor = mainColor
+        self.secondColor = secondColor
+        
+        titleLabel.textColor = isSelected ? mainColor : secondColor
     }
 }
 
@@ -78,11 +87,6 @@ private extension CustomTabCollectionViewCell {
     enum Constant {
         enum Label {
             static let font = UIFont.systemFont(ofSize: 25, weight: .semibold)
-            
-            enum Color {
-                static let whenSelected = UIColor.systemIndigo
-                static let notSelected = UIColor.systemGray
-            }
             
             enum Transition {
                 static let duration = 0.2

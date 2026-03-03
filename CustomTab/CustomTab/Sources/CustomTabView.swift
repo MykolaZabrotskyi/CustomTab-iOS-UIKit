@@ -57,18 +57,6 @@ final class CustomTabView: UIView {
     
     // MARK: - Init
     
-    init(frame: CGRect, tabTitles: [String], mainColor: UIColor, secondColor: UIColor) {
-        super.init(frame: frame)
-        self.tabTitles = tabTitles
-        self.mainColor = mainColor
-        self.secondColor = secondColor
-        setupLayout()
-    }
-    
-    convenience init(tabTitles: [String], mainColor: UIColor, secondColor: UIColor) {
-        self.init(frame: .zero, tabTitles: tabTitles, mainColor: mainColor, secondColor: secondColor)
-    }
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupLayout()
@@ -78,6 +66,16 @@ final class CustomTabView: UIView {
         super.init(coder: coder)
         fatalError("init(coder:) has not been implemented")
     }
+    
+    convenience init(tabTitles: [String], mainColor: UIColor, secondColor: UIColor) {
+        self.init(frame: .zero)
+        
+        self.tabTitles = tabTitles
+        self.mainColor = mainColor
+        self.secondColor = secondColor
+    }
+    
+    // MARK: - Lifecycle
     
     override func layoutSubviews() {
         super.layoutSubviews()

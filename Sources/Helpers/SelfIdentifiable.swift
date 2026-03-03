@@ -1,8 +1,8 @@
 import UIKit
 
-public protocol SelfIdentifiable { }
+protocol SelfIdentifiable { }
 
-public extension SelfIdentifiable {
+extension SelfIdentifiable {
     static var identifier: String {
         String(describing: self)
     }
@@ -10,7 +10,7 @@ public extension SelfIdentifiable {
 
 extension UICollectionReusableView: SelfIdentifiable { }
 
-public extension UICollectionView {
+extension UICollectionView {
     func register<Cell: UICollectionViewCell>(cell: Cell.Type) {
         self.register(cell.self, forCellWithReuseIdentifier: cell.identifier)
     }

@@ -8,11 +8,7 @@ public extension SelfIdentifiable {
     }
 }
 
-extension UITableViewCell: SelfIdentifiable { }
-
 extension UICollectionReusableView: SelfIdentifiable { }
-
-extension UITableViewHeaderFooterView: SelfIdentifiable { }
 
 public extension UICollectionView {
     func register<Cell: UICollectionViewCell>(cell: Cell.Type) {
@@ -50,31 +46,5 @@ public extension UICollectionView {
             fatalError("View \(String(describing: View.self)) not registered")
         }
         return view
-    }
-}
-
-public extension UITableView {
-    func register<Cell: UITableViewCell>(cell: Cell.Type) {
-        self.register(cell.self, forCellReuseIdentifier: cell.identifier)
-    }
-    
-    func register<HeaderFooter: UITableViewHeaderFooterView>(headerFooterView: HeaderFooter.Type) {
-        self.register(headerFooterView.self, forHeaderFooterViewReuseIdentifier: headerFooterView.identifier)
-    }
-    
-    func dequeue<Cell: UITableViewCell>(for indexPath: IndexPath) -> Cell {
-        guard let cell = self.dequeueReusableCell(withIdentifier: Cell.identifier, for: indexPath) as? Cell else {
-            fatalError("Cell \(String(describing: Cell.self)) not registered")
-        }
-        return cell
-    }
-    
-    func dequeueHeaderFooter<HeaderFooter: UITableViewHeaderFooterView>() -> HeaderFooter {
-        guard let headerFooter = self.dequeueReusableHeaderFooterView(
-            withIdentifier: HeaderFooter.identifier
-        ) as? HeaderFooter else {
-            fatalError("HeaderFooter \(String(describing: HeaderFooter.self)) not registered")
-        }
-        return headerFooter
     }
 }

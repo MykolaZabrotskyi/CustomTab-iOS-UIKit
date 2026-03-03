@@ -7,15 +7,15 @@
 
 import UIKit
 
-protocol CustomTabViewDelegate: AnyObject {
+public protocol CustomTabViewDelegate: AnyObject {
     func customTabView(_ view: CustomTabView, didSelectTabAt index: Int)
 }
 
-final class CustomTabView: UIView {
+public final class CustomTabView: UIView {
     
     // MARK: - Properties
     
-    weak var delegate: CustomTabViewDelegate?
+    public weak var delegate: CustomTabViewDelegate?
     
     private var tabTitles: [String] = []
     private var mainColor: UIColor = .systemBlue
@@ -57,17 +57,17 @@ final class CustomTabView: UIView {
     
     // MARK: - Init
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         setupLayout()
     }
     
-    required init?(coder: NSCoder) {
+    public required init?(coder: NSCoder) {
         super.init(coder: coder)
         fatalError("init(coder:) has not been implemented")
     }
     
-    convenience init(tabTitles: [String], mainColor: UIColor, secondColor: UIColor) {
+    public convenience init(tabTitles: [String], mainColor: UIColor, secondColor: UIColor) {
         self.init(frame: .zero)
         
         self.tabTitles = tabTitles
@@ -77,7 +77,7 @@ final class CustomTabView: UIView {
     
     // MARK: - Lifecycle
     
-    override func layoutSubviews() {
+    public override func layoutSubviews() {
         super.layoutSubviews()
         collectionView.collectionViewLayout.invalidateLayout()
         DispatchQueue.main.async {
@@ -151,11 +151,11 @@ private extension CustomTabView {
 
 extension CustomTabView: UICollectionViewDataSource {
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return tabTitles.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: CustomTabCollectionViewCell = collectionView.dequeue(for: indexPath)
         cell.configure(with: tabTitles[indexPath.item], mainColor: self.mainColor, secondColor: self.secondColor)
         
@@ -167,7 +167,7 @@ extension CustomTabView: UICollectionViewDataSource {
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard selectedIndex != indexPath.item else {
             return
         }
@@ -184,7 +184,7 @@ extension CustomTabView: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegateFlowLayout
 
 extension CustomTabView: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let height = collectionView.bounds.height
         
